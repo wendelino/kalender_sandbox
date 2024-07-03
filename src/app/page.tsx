@@ -3,6 +3,8 @@ import React from 'react';
 import { createEvent } from 'ics'; 
 
 export default function Page() {
+
+  
   const handleButtonClick = () => {
     const event: any = {
       start: [2024, 7, 4, 9, 0],
@@ -20,20 +22,22 @@ export default function Page() {
         { name: 'Teilnehmer 2', email: 'teilnehmer2@beispiel.com' }
       ]
     };
+    createEvent(event, (error, value) => {
+      if (error) {
+        console.error(error);
+        return;
+      }
 
-    const startDate = new Date(2024, 6, 4, 9, 0); // Beachte: Monat ist nullbasiert, 6 ist Juli
-    const endDate = new Date(2024, 6, 4, 17, 0);
-
-    const startDateTime = startDate.toISOString().replace(/-|:|\.\d\d\d/g, "");
-    const endDateTime = endDate.toISOString().replace(/-|:|\.\d\d\d/g, "");
-
-    const title = encodeURIComponent("Neues Ereignis");
-    const description = encodeURIComponent("Ein Beispiel für ein Ereignis");
-    const location = encodeURIComponent("Online");
-
-    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDateTime}/${endDateTime}&details=${description}&location=${location}`;
-
-    window.open(googleCalendarUrl, "_blank");
+      const blob = new Blob([value], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'termin.ics';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    });
     
   };
 
