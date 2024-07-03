@@ -1,28 +1,47 @@
 "use client"
 import React from 'react';
-import { createEvent } from 'ics'; 
+import { createEvents } from 'ics'; 
 
 export default function Page() {
 
   
   const handleButtonClick = () => {
-    const event: any = {
-      start: [2024, 7, 4, 9, 0],
-      duration: { hours: 8 },
-      title: 'Ferdinand gibt mir 50€',
-      description: 'Ein Beispiel für ein Ereignis',
-      location: 'Online',
-      url: 'http://beispiel.com',
-      geo: { lat: 51.5074, lon: 0.1278 },
-      status: 'CONFIRMED',
-      busyStatus: 'BUSY',
-      organizer: { name: 'Organisator Name', email: 'organisator@beispiel.com' },
-      attendees: [
-        { name: 'Teilnehmer 1', email: 'teilnehmer1@beispiel.com' },
-        { name: 'Teilnehmer 2', email: 'teilnehmer2@beispiel.com' }
-      ]
-    };
-    createEvent(event, (error, value) => {
+    const events: any = [
+      {
+        start: [2024, 7, 4, 9, 0],
+        duration: { hours: 8 },
+        title: 'Ferdinand gibt mir 50€',
+        description: 'Ein Beispiel für ein Ereignis',
+        location: 'Online',
+        url: 'http://beispiel.com',
+        geo: { lat: 51.5074, lon: 0.1278 },
+        status: 'CONFIRMED',
+        busyStatus: 'BUSY',
+        organizer: { name: 'Organisator Name', email: 'organisator@beispiel.com' },
+        attendees: [
+          { name: 'Teilnehmer 1', email: 'teilnehmer1@beispiel.com' },
+          { name: 'Teilnehmer 2', email: 'teilnehmer2@beispiel.com' }
+        ]
+      },
+      {
+        start: [2024, 7, 5, 10, 0],
+        duration: { hours: 2 },
+        title: 'Test 123',
+        description: 'Ein weiteres Beispiel für ein Ereignis',
+        location: 'Online',
+        url: 'http://beispiel.com',
+        geo: { lat: 51.5074, lon: 0.1278 },
+        status: 'CONFIRMED',
+        busyStatus: 'BUSY',
+        organizer: { name: 'Organisator Name', email: 'organisator@beispiel.com' },
+        attendees: [
+          { name: 'Teilnehmer 1', email: 'teilnehmer1@beispiel.com' },
+          { name: 'Teilnehmer 2', email: 'teilnehmer2@beispiel.com' }
+        ]
+      }
+    ];
+
+    createEvents(events, (error, value) => {
       if (error) {
         console.error(error);
         return;
@@ -32,7 +51,7 @@ export default function Page() {
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = 'termin.ics';
+      link.download = 'termine.ics';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
