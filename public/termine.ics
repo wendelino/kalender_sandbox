@@ -1,0 +1,39 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:mqEf7waiFBlyk5WA-TLu6
+SUMMARY:Ferdinand gibt mir 99
+DTSTAMP:20240703T185806Z
+DTSTART:20240704T070000Z
+DESCRIPTION:Ein Beispiel für ein Ereignis
+URL:http://beispiel.com
+GEO:51.5074;0.1278
+LOCATION:Online
+STATUS:CONFIRMED
+ORGANIZER;CN="Organisator Name":MAILTO:organisator@beispiel.com
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+ATTENDEE;CN="Teilnehmer 1":mailto:teilnehmer1@beispiel.com
+ATTENDEE;CN="Teilnehmer 2":mailto:teilnehmer2@beispiel.com
+DURATION:PT8H
+END:VEVENT
+BEGIN:VEVENT
+UID:6Jh6PDMbyC_5Ud6PSt70f
+SUMMARY:Test 123
+DTSTAMP:20240703T185806Z
+DTSTART:20240705T080000Z
+DESCRIPTION:Ein weiteres Beispiel für ein Ereignis
+URL:http://beispiel.com
+GEO:51.5074;0.1278
+LOCATION:Online
+STATUS:CONFIRMED
+ORGANIZER;CN="Organisator Name":MAILTO:organisator@beispiel.com
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+ATTENDEE;CN="Teilnehmer 1":mailto:teilnehmer1@beispiel.com
+ATTENDEE;CN="Teilnehmer 2":mailto:teilnehmer2@beispiel.com
+DURATION:PT2H
+END:VEVENT
+END:VCALENDAR
