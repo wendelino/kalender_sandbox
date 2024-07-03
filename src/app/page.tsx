@@ -1,7 +1,6 @@
 "use client"
 import React from 'react';
-import { createEvent } from 'ics';
-import { saveAs } from 'file-saver';
+import { createEvent } from 'ics'; 
 
 export default function Page() {
   const handleButtonClick = () => {
@@ -22,15 +21,20 @@ export default function Page() {
       ]
     };
 
-    createEvent(event, (error, value) => {
-      if (error) {
-        console.log(error);
-        return;
-      }
+    const startDate = new Date(2024, 6, 4, 9, 0); // Beachte: Monat ist nullbasiert, 6 ist Juli
+    const endDate = new Date(2024, 6, 4, 17, 0);
 
-      const blob = new Blob([value], { type: 'text/calendar;charset=utf-8' });
-      saveAs(blob, 'termin.ics');
-    });
+    const startDateTime = startDate.toISOString().replace(/-|:|\.\d\d\d/g, "");
+    const endDateTime = endDate.toISOString().replace(/-|:|\.\d\d\d/g, "");
+
+    const title = encodeURIComponent("Neues Ereignis");
+    const description = encodeURIComponent("Ein Beispiel für ein Ereignis");
+    const location = encodeURIComponent("Online");
+
+    const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDateTime}/${endDateTime}&details=${description}&location=${location}`;
+
+    window.open(googleCalendarUrl, "_blank");
+    
   };
 
   return (
