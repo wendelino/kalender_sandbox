@@ -22,7 +22,7 @@ produce() {
       echo "$git_output"
 
       # Beenden der Ladeanimation
-      kill $!
+      kill $! > /dev/null 2>&1
       ;;
     n|no|No|NO )
       echo "Operation canceled."
