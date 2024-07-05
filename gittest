@@ -1,0 +1,38 @@
+produce() {
+  if [ $# -eq 0 ]; then
+    echo "Please provide a commit message."
+    return 1
+  fi
+
+  echo -e "\n\n\n____________________________________________________________________"
+  echo -e "\n\n"
+  echo -e "Are you sure you want to proceed with the commit and push? (yes/no):\n "
+  read choice
+
+  case "$choice" in
+    y|yes|Yes|YES )
+      animate_spinner &
+
+      # Warte eine kurze Zeit, um sicherzustellen, dass die Ladeanimation gestartet wird
+      sleep 0.5
+
+      # Ausführung der Git-Befehle und Speichern der Ausgabe
+      git_output=$(git add . && git commit -m "$*" && git push -u origin main)
+
+      # Filtern und Anzeigen der Zeile mit den Änderungen
+      changes_line=$(echo "$git_output" | grep -o '^[0-9]* file[s]* changed.*')
+      echo "$changes_line"
+
+      # Beenden der Ladeanimation
+      kill $!
+      ;;
+    n|no|No|NO )
+      echo "Operation canceled."
+      return 1
+      ;;
+    * )
+      echo "Invalid input. Operation canceled."
+      return 1
+      ;;
+  esac
+}
