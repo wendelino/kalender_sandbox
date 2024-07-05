@@ -60,9 +60,16 @@ export default function Page() {
     
   };
 
+  //https://meine-mensa.de/speiseplan_iframe
+
   return (
     <div className='flex justify-center items-center h-screen w-screen flex-col gap-2'> 
       <button className='bg-blue-300 p-2 border rounded-lg' onClick={handleButtonClick}>Termin hinzufügen</button>
+
+      <iframe className='w-full h-full'
+        src="https://eventec.vercel.app"
+        title="Externer Inhalt" 
+      ></iframe>
     </div>
   );
 };
