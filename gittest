@@ -18,10 +18,8 @@ produce() {
 
       # Ausführung der Git-Befehle und Speichern der Ausgabe
       git_output=$(git add . && git commit -m "$*" && git push -u origin main)
-
-      # Filtern und Anzeigen der Zeile mit den Änderungen
-      changes_line=$(echo "$git_output" | grep -o '^[0-9]* file[s]* changed.*')
-      echo "$changes_line"
+      
+      echo "$git_output"
 
       # Beenden der Ladeanimation
       kill $!
